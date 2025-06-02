@@ -1,0 +1,3 @@
+providers:
+  - Worksofallen\MailScheduler\MailSchedulerServiceProvider
+  - Spatie\LaravelRay\RayServiceProvider
