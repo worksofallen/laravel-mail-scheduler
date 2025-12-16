@@ -30,14 +30,18 @@ class MailSchedulerServiceProvider extends PackageServiceProvider
             $schedule = app(Schedule::class);
 
             $schedule->command(SendEmails::class)
-                ->cron(config('mail-scheduler.schedule_cron'));
+                ->cron(config('mail-scheduler.schedule_cron'))
+                ->onOneServer()
+                ->withoutOverlapping();
         }
 
         if (config('mail-scheduler.retention_days') > 0) {
             $schedule = app(Schedule::class);
 
             $schedule->command(SentEmailRetentions::class)
-                ->cron(config('mail-scheduler.retention_cron'));
+                ->cron(config('mail-scheduler.retention_cron'))
+                ->onOneServer()
+                ->withoutOverlapping();
         }
     }
 }
